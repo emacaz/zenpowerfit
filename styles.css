@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.container {
+    text-align: center;
+}
+
+.container h1 {
+    padding: 2rem;
+    font-size: 20px;
+}
+
+.centered-image {
+    width: 200px; /* Tamaño deseado de la imagen */
+    height: 200px; /* Tamaño deseado de la imagen */
+    max-width: 100%; /* Para asegurar que la imagen no se extienda más allá de su contenedor */
+    max-height: 100%; /* Para asegurar que la imagen no se extienda más allá de su contenedor */
+}
