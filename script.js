@@ -1,17 +1,13 @@
-function togglePlayPause() {
-  var video = document.getElementById("myVideo");
-  var playButton = document.querySelector(".play-button svg");
-
+document.getElementById("play_btn_id").addEventListener("click", function () {
+  let video = document.getElementById("myVideo");
   if (video.paused || video.ended) {
     video.play();
-    playButton.innerHTML =
-      '<path d="M8 5v14l11-7z"/><path d="M0 0h24v24H0z" fill="none"/>';
+    document.getElementById("play_btn_id").style.display = "none";
+    
   } else {
     video.pause();
-    playButton.innerHTML =
-      '<path d="M10 8v8l6-4z"/><path d="M0 0h24v24H0z" fill="none"/>';
   }
-}
+});
 
 function importHotmart() {
   var imported = document.createElement("script");
