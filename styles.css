@@ -65,7 +65,7 @@ header .logo {
 .get-guide-paid-container p {
   position: absolute;
   right: 40px;
-  top: 45px;
+  top: 35px;
   font-size: 20px;
   font-weight: 600;
   color: #ff9300;
@@ -76,6 +76,7 @@ header .logo {
   border-radius: 10px;
   font-style: italic;
   padding: 0px 5px;
+  transform: rotate(7deg);
 }
 
 .pdf-buy-guide-btn-container {
@@ -135,7 +136,7 @@ header .logo {
 }
 
 #myVideo {
-  width: 50%;
+  padding: 2rem;
 }
 
 .play-button {
@@ -177,6 +178,8 @@ header .cta {
   border-radius: 5px;
   display: inline-block;
   margin-top: 10px;
+  margin-bottom: 30px;
+  width: 250px;
 }
 
 /* Hero Section */
@@ -220,6 +223,11 @@ header .cta {
   padding: 0.5rem 1rem;
   text-decoration: none;
   border-radius: 5px;
+  display: block;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  width: 250px
 }
 
 /* About Section */
@@ -356,7 +364,9 @@ header .cta {
   text-decoration: none;
   border-radius: 5px;
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  width: 250px;
 }
 
 /* Footer */
@@ -385,5 +395,10 @@ footer nav ul li a {
 @media (min-width: 768px) {
   .video-container {
     flex-direction: row;
+    padding: 2rem;
+  }
+
+  #myVideo {
+    width: 50%;
   }
 }
