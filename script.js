@@ -1,14 +1,3 @@
-// document.getElementById("play_btn_id").addEventListener("click", function () {
-//   let video = document.getElementById("myVideo");
-//   if (video.paused || video.ended) {
-//     video.play();
-//     document.getElementById("play_btn_id").style.display = "none";
-    
-//   } else {
-//     video.pause();
-//   }
-// });
-
 function importHotmart() {
   var imported = document.createElement("script");
   imported.src = "https://static.hotmart.com/checkout/widget.min.js";
@@ -20,3 +9,23 @@ function importHotmart() {
   document.head.appendChild(link);
 }
 importHotmart();
+
+document.getElementById("form_id").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const responseMessage = document.getElementById("responseMessage");
+  const email = document.getElementById("email_id").value;
+  const submitBtn = document.getElementById("submitBtn");
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  
+  document.querySelector("input[name='email']").disabled = true;
+  submitBtn.textContent = "Enviando...";
+
+  if (!emailRegex.test(email)) {
+    responseMessage.textContent = "Ingresa un correo electrónico válido.";
+    submitBtn.textContent = "Enviar";
+    document.querySelector("input[name='email']").disabled = false;
+    return;
+  }
+})
