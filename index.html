@@ -14,7 +14,7 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
     <!-- pre-showing -->
-    <!-- <style>
+    <style>
       body,
       html {
         margin: 0;
@@ -32,18 +32,42 @@
         height: 100%;
         background: rgba(0, 0, 0, 0.9); /* Fondo oscuro con opacidad */
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         z-index: 1000;
         color: #fff;
         font-size: 2em;
       }
-    </style> -->
+      #overlay p {
+        margin: 15px;
+        font-size: 18px;
+        text-align: center;
+      }
+      .social-media {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+      }
+      .social-media img {
+        padding: 4px;
+        border-radius: 6px;
+        background: white;
+        width: 35px;
+      }
+    </style>
     <!-- pre-showing -->
   </head>
   <body>
     <!-- Pre-showing -->
-    <!-- <div id="overlay">Muy pronto...</div> -->
+    <div id="overlay">
+      <p><b>Zen Power Fit</b> <br> Una Guía de Entrenamiento para <u>Personas Productivas</u> <br> Muy pronto...</p>
+      <div class="social-media">
+        <a href="https://www.instagram.com/zenpowerfit/" target="_blank" ><img src="instagram-icon.png" alt="Instagram" /></a>
+        <a href="https://www.tiktok.com/@zenpowerfit/" target="_blank" ><img src="tiktok-icon.png" alt="TikTok" /></a>
+      </div>
+    </div>
     <!-- Pre-showing -->
 
     <!-- Header -->
