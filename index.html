@@ -12,62 +12,16 @@
       type="image/x-icon"
     />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-    <!-- pre-showing -->
-    <style>
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-      }
-
-      #overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9); /* Fondo oscuro con opacidad */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-        color: #fff;
-        font-size: 2em;
-      }
-      #overlay p {
-        margin: 15px;
-        font-size: 18px;
-        text-align: center;
-      }
-      .social-media {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 15px;
-      }
-      .social-media img {
-        padding: 4px;
-        border-radius: 6px;
-        background: white;
-        width: 35px;
-      }
-    </style>
-    <!-- pre-showing -->
   </head>
   <body>
     <!-- Pre-showing -->
-    <div id="overlay">
+    <!-- <div id="overlay">
       <p><b>Zen Power Fit</b> <br> Una Guía de Entrenamiento para <u>Personas Productivas</u> <br> Muy pronto...</p>
       <div class="social-media">
         <a href="https://www.instagram.com/zenpowerfit/" target="_blank" ><img src="instagram-icon.png" alt="Instagram" /></a>
         <a href="https://www.tiktok.com/@zenpowerfit/" target="_blank" ><img src="tiktok-icon.png" alt="TikTok" /></a>
       </div>
-    </div>
+    </div> -->
     <!-- Pre-showing -->
 
     <!-- Header -->
@@ -112,11 +66,12 @@
                 name="email"
                 placeholder="Tu correo"
                 required
+                disabled
               />
               <p class="accept-form-text">
                 * Al registrarte aceptas recibir correos de Zen Power Fit.
               </p>
-              <button type="submit" id="submitBtn">Enviar</button>
+              <button type="submit" id="submitBtn" disabled>Enviar</button>
               <p id="responseMessage" style="color: brown; margin: 5px; font-size: 16px; font-style: italic;"></p>
             </form>
           </div>
@@ -142,12 +97,12 @@
           </svg>
         </div> -->
       </div>
-      <a
+      <!-- <a
         onclick="return false;"
         href="https://pay.hotmart.com/H93791231O?checkoutMode=2"
         class="hotmart-fb cta"
         >Comprar Ahora</a
-      >
+      > -->
     </header>
 
     <!-- Hero Section -->
@@ -157,12 +112,12 @@
         <p>Transforma tu cuerpo sin descuidar tus objetivos</p>
         <img src="logo_500.png" alt="Imagen" class="small-image" />
         <img src="logo-1000x1000.jpg" alt="Imagen" class="centered-image" />
-        <a
+        <!-- <a
           onclick="return false;"
           href="https://pay.hotmart.com/H93791231O?checkoutMode=2"
           class="hotmart-fb cta"
           >Descubre Más</a
-        >
+        > -->
       </div>
     </section>
 
@@ -254,7 +209,7 @@
     </section>
 
     <!-- Oferta Especial -->
-    <section id="special-offer" class="special-offer">
+    <!-- <section id="special-offer" class="special-offer">
       <h2>Oferta Especial</h2>
       <p>
         Compra ahora y recibe un 20% de descuento. ¡Oferta válida por tiempo
@@ -266,7 +221,7 @@
         class="hotmart-fb cta"
         >Comprar Ahora</a
       >
-    </section>
+    </section> -->
 
     <!-- Footer -->
     <footer>

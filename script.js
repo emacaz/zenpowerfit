@@ -10,22 +10,22 @@ function importHotmart() {
 }
 importHotmart();
 
-document.getElementById("form_id").addEventListener("submit", (e) => {
-  e.preventDefault();
+// document.getElementById("form_id").addEventListener("submit", (e) => {
+//   e.preventDefault();
 
-  const responseMessage = document.getElementById("responseMessage");
-  const email = document.getElementById("email_id").value;
-  const submitBtn = document.getElementById("submitBtn");
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//   const responseMessage = document.getElementById("responseMessage");
+//   const email = document.getElementById("email_id").value;
+//   const submitBtn = document.getElementById("submitBtn");
+//   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   
-  document.querySelector("input[name='email']").disabled = true;
-  submitBtn.textContent = "Enviando...";
+//   document.querySelector("input[name='email']").disabled = true;
+//   submitBtn.textContent = "Enviando...";
 
-  if (!emailRegex.test(email)) {
-    responseMessage.textContent = "Ingresa un correo electrónico válido.";
-    submitBtn.textContent = "Enviar";
-    document.querySelector("input[name='email']").disabled = false;
-    return;
-  }
-})
+//   if (!emailRegex.test(email)) {
+//     responseMessage.textContent = "Ingresa un correo electrónico válido.";
+//     submitBtn.textContent = "Enviar";
+//     document.querySelector("input[name='email']").disabled = false;
+//     return;
+//   }
+// })

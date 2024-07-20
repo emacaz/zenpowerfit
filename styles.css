@@ -179,7 +179,7 @@ header .cta {
   display: inline-block;
   margin-top: 10px;
   margin-bottom: 30px;
-  width: 250px;
+  max-width: 250px;
 }
 
 /* Hero Section */
