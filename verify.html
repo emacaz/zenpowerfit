@@ -21,39 +21,52 @@
     <div class="message" id="message">Verifying your email, please wait...</div>
 
     <script>
-        // Extract the token from the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Extract the token from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            console.log('Extracted Token:', token);  // Log the token
 
-        const API = 'https://3ewf2lnjmk.execute-api.sa-east-1.amazonaws.com/prod/verify';
+            const API = 'https://3ewf2lnjmk.execute-api.sa-east-1.amazonaws.com/prod/verify';
 
-        if (token) {
-            // Call the API Gateway endpoint to verify the token
-            fetch(API, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ token: token })
-            })
-            .then(response => response.json())
-            .then(data => {
-                const messageElement = document.getElementById('message');
-                if (data.message) {
-                    messageElement.textContent = data.message;
-                    console.log('OK'); 
-                    // Optionally, redirect the user to a download link for the PDF
-                    // window.location.href = 'path/to/your/pdf';
-                } else if (data.error) {
-                    messageElement.textContent = data.error;
-                }
-            })
-            .catch(error => {
-                document.getElementById('message').textContent = 'An error occurred during verification. Please try again.';
-            });
-        } else {
-            document.getElementById('message').textContent = 'Invalid or missing token.';
-        }
+            if (token) {
+                console.log('Token is present, making the fetch call');
+
+                // Call the API Gateway endpoint to verify the token
+                fetch(API, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ token: token })
+                })
+                .then(response => {
+                    console.log('Response Status:', response.status);  // Log the status code
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Response Data:', data);  // Log the response data
+                    const messageElement = document.getElementById('message');
+                    if (data.message) {
+                        messageElement.textContent = data.message;
+                        console.log('Verification Successful'); 
+                        // Optionally, redirect the user to a download link for the PDF
+                        // window.location.href = 'path/to/your/pdf';
+                    } else if (data.error) {
+                        messageElement.textContent = data.error;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error during verification:', error);
+                    document.getElementById('message').textContent = 'An error occurred during verification. Please try again.';
+                });
+            } else {
+                document.getElementById('message').textContent = 'Invalid or missing token.';
+            }
+        });
     </script>
 </body>
 </html>
