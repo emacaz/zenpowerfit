@@ -13,7 +13,6 @@ importHotmart();
 document.getElementById("form_id").addEventListener("submit", (e) => {
   e.preventDefault();
 
-  // const API = 'https://3ewf2lnjmk.execute-api.sa-east-1.amazonaws.com/confirm-lead';
   const API = 'https://3ewf2lnjmk.execute-api.sa-east-1.amazonaws.com/prod/';
   const responseMessage = document.getElementById("responseMessage");
   const email = document.getElementById("email_id").value.toLowerCase().replace(/\s/g, "");
