@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .message {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Email Verification</h1>
+    <div class="message" id="message">Verifying your email, please wait...</div>
+
+    <script>
+        // Extract the token from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+
+        if (token) {
+            // Call the API Gateway endpoint to verify the token
+            fetch('https://3ewf2lnjmk.execute-api.sa-east-1.amazonaws.com/confirm-lead/verify', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ token: token })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const messageElement = document.getElementById('message');
+                if (data.message) {
+                    messageElement.textContent = data.message;
+                    // Optionally, redirect the user to a download link for the PDF
+                    // window.location.href = 'path/to/your/pdf';
+                } else if (data.error) {
+                    messageElement.textContent = data.error;
+                }
+            })
+            .catch(error => {
+                document.getElementById('message').textContent = 'An error occurred during verification. Please try again.';
+            });
+        } else {
+            document.getElementById('message').textContent = 'Invalid or missing token.';
+        }
+    </script>
+</body>
+</html>
