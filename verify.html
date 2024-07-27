@@ -41,6 +41,7 @@
                 const messageElement = document.getElementById('message');
                 if (data.message) {
                     messageElement.textContent = data.message;
+                    console.log('OK'); 
                     // Optionally, redirect the user to a download link for the PDF
                     // window.location.href = 'path/to/your/pdf';
                 } else if (data.error) {
