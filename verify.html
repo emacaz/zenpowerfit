@@ -1,85 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Email Verification</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-        }
-        .message {
-            font-size: 1.2em;
-            margin-top: 20px;
-        }
-        .success {
-            color: green;
-        }
-        .error {
-            color: red;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 50px;
+      }
+      .message {
+        font-size: 1.2em;
+        margin-top: 20px;
+      }
+      .success {
+        color: green;
+      }
+      .error {
+        color: red;
+      }
     </style>
-</head>
-<body>
-    <h1>Email Verification</h1>
-    <div class="message" id="message">Verifying your email, please wait...</div>
+  </head>
+  <body>
+    <h1>Verificación de Correo</h1>
+    <div class="message" id="message">Estamos verificando tu correo</div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const token = urlParams.get('token');
-            console.log('Extracted Token:', token);
+      document.addEventListener("DOMContentLoaded", (event) => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get("token");
+        const API = "https://3ewf2lnjmk.execute-api.sa-east-1.amazonaws.com/prod/verify";
 
-            const API = 'https://3ewf2lnjmk.execute-api.sa-east-1.amazonaws.com/prod/verify';
+        if (token) {
+          fetch(API, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ token: token }),
+          })
+            .then((response) => {
+              console.log("Response Status:", response.status);
+              if (!response.ok) {
+                throw new Error("Network response was not ok.");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              console.log("Response Data:", data);
+              const messageElement = document.getElementById("message");
 
-            if (token) {
-                console.log('Token is present, making the fetch call');
+              // Parsing the body from the response data
+              const responseBody = JSON.parse(data.body);
 
-                fetch(API, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ token: token })
-                })
-                .then(response => {
-                    console.log('Response Status:', response.status);
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok.');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Response Data:', data);
-                    const messageElement = document.getElementById('message');
-                    
-                    // Parsing the body from the response data
-                    const responseBody = JSON.parse(data.body);
-
-                    if (responseBody.message) {
-                        messageElement.textContent = responseBody.message;
-                        messageElement.classList.add('success');
-                        console.log('Verification Successful');
-                    } else if (responseBody.error) {
-                        messageElement.textContent = responseBody.error;
-                        messageElement.classList.add('error');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error during verification:', error);
-                    const messageElement = document.getElementById('message');
-                    messageElement.textContent = 'An error occurred during verification. Please try again.';
-                    messageElement.classList.add('error');
-                });
-            } else {
-                const messageElement = document.getElementById('message');
-                messageElement.textContent = 'Invalid or missing token.';
-                messageElement.classList.add('error');
-            }
-        });
+              if (responseBody.message) {
+                messageElement.textContent = responseBody.message;
+                messageElement.classList.add("success");
+                console.log("Verification Successful");
+              } else if (responseBody.error) {
+                messageElement.textContent = responseBody.error;
+                messageElement.classList.add("error");
+              }
+            })
+            .catch((error) => {
+              console.error("Error during verification:", error);
+              const messageElement = document.getElementById("message");
+              messageElement.textContent =
+                "An error occurred during verification. Please try again.";
+              messageElement.classList.add("error");
+            });
+        } else {
+          const messageElement = document.getElementById("message");
+          messageElement.textContent = "Invalid or missing token.";
+          messageElement.classList.add("error");
+        }
+      });
     </script>
-    
-</body>
+  </body>
 </html>
