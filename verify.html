@@ -58,8 +58,8 @@
               // Parsing the body from the response data
               const responseBody = JSON.parse(data.body);
 
-              if (responseBody.message) {
-                messageElement.textContent = responseBody.message;
+              if (responseBody.userMessage) {
+                messageElement.textContent = responseBody.userMessage;
                 messageElement.classList.add("success");
                 console.log("Verification Successful");
               } else if (responseBody.error) {
