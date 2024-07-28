@@ -21,10 +21,16 @@ document.getElementById("form_id").addEventListener("submit", (e) => {
   
   document.querySelector("input[name='email']").disabled = true;
   submitBtn.textContent = "Enviando...";
+  submitBtn.style.cursor = "not-allowed";
+  submitBtn.style.backgroundColor = "gray";
+  submitBtn.disabled = true;
 
   if (!emailRegex.test(email)) {
     responseMessage.textContent = "Ingresa un correo electrónico válido.";
     submitBtn.textContent = "Enviar";
+    submitBtn.style.backgroundColor = "#ff9300";
+    submitBtn.style.cursor = "pointer";
+    submitBtn.disabled = false;
     document.querySelector("input[name='email']").disabled = false;
     return;
   }
@@ -37,12 +43,15 @@ document.getElementById("form_id").addEventListener("submit", (e) => {
     body: JSON.stringify({ email: email }),
   })
     .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
+    .then((rawData) => {
+      const data = JSON.parse(rawData.body);
+      responseMessage.textContent = data.userMessage;
       submitBtn.textContent = "Enviar";
+      submitBtn.style.cursor = "pointer"
+      submitBtn.style.backgroundColor = "#ff9300"
+      submitBtn.disabled = false;
       document.querySelector("input[name='email']").disabled = false;
       document.querySelector("input[name='email']").value = "";
-      responseMessage.textContent = "";
       // document.getElementById("confirmationModal").style.display = "block";
       // grecaptcha.reset();
     })
