@@ -23,16 +23,19 @@
     </style>
   </head>
   <body>
-    <img src="https://zenpowerfit.com/logo_500.png" alt="logo" width="120px">
+    <img src="https://zenpowerfit.com/logo_500.png" alt="logo" width="120px" />
     <h1>Verificación de Correo</h1>
     <div class="message" id="message">Estamos verificando tu correo</div>
-    
+
     <p>Volver al <a href="/">Inicio</a></p>
     <script>
       document.addEventListener("DOMContentLoaded", (event) => {
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get("token");
         const API = "https://3ewf2lnjmk.execute-api.sa-east-1.amazonaws.com/prod/verify";
+        const messageElement = document.getElementById("message");
+        let countdown = 10;
+        const redirectMessage = document.createElement('div');
 
         if (token) {
           fetch(API, {
@@ -51,7 +54,6 @@
             })
             .then((data) => {
               console.log("Response Data:", data);
-              const messageElement = document.getElementById("message");
 
               // Parsing the body from the response data
               const responseBody = JSON.parse(data.body);
@@ -67,16 +69,25 @@
             })
             .catch((error) => {
               console.error("Error during verification:", error);
-              const messageElement = document.getElementById("message");
               messageElement.textContent =
                 "An error occurred during verification. Please try again.";
               messageElement.classList.add("error");
             });
         } else {
-          const messageElement = document.getElementById("message");
           messageElement.textContent = "Invalid or missing token.";
           messageElement.classList.add("error");
         }
+
+        const countdownInterval = setInterval(() => {
+          if (countdown > 0) {
+            redirectMessage.textContent = `Serás redirigido al Inicio en ${countdown} segundos.`;
+            messageElement.appendChild(redirectMessage);
+            countdown--;
+          } else {
+            clearInterval(countdownInterval);
+            window.location.href = "/";
+          }
+        }, 1000);
       });
     </script>
   </body>

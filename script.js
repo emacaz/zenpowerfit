@@ -45,13 +45,18 @@ document.getElementById("form_id").addEventListener("submit", (e) => {
     .then((response) => response.json())
     .then((rawData) => {
       const data = JSON.parse(rawData.body);
+      
       responseMessage.textContent = data.userMessage;
+
+      if (data.showModal) {
+        responseMessage.style.color = "#9ccc3a";
+      }
       submitBtn.textContent = "Enviar";
       submitBtn.style.cursor = "pointer"
       submitBtn.style.backgroundColor = "#ff9300"
       submitBtn.disabled = false;
       document.querySelector("input[name='email']").disabled = false;
-      document.querySelector("input[name='email']").value = "";
+      // document.querySelector("input[name='email']").value = "";
       // document.getElementById("confirmationModal").style.display = "block";
       // grecaptcha.reset();
     })
