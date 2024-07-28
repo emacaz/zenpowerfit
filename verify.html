@@ -54,12 +54,16 @@
                 .then(data => {
                     console.log('Response Data:', data);
                     const messageElement = document.getElementById('message');
-                    if (data.message) {
-                        messageElement.textContent = data.message;
+                    
+                    // Parsing the body from the response data
+                    const responseBody = JSON.parse(data.body);
+
+                    if (responseBody.message) {
+                        messageElement.textContent = responseBody.message;
                         messageElement.classList.add('success');
                         console.log('Verification Successful');
-                    } else if (data.error) {
-                        messageElement.textContent = data.error;
+                    } else if (responseBody.error) {
+                        messageElement.textContent = responseBody.error;
                         messageElement.classList.add('error');
                     }
                 })
