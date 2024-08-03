@@ -56,7 +56,7 @@ document.getElementById("form_id").addEventListener("submit", (e) => {
       submitBtn.style.backgroundColor = "#ff9300"
       submitBtn.disabled = false;
       document.querySelector("input[name='email']").disabled = false;
-      // document.querySelector("input[name='email']").value = "";
+      document.querySelector("input[name='email']").value = "";
       // document.getElementById("confirmationModal").style.display = "block";
       // grecaptcha.reset();
     })
